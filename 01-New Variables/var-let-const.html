@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>let and const real world</title>
+</head>
+<body>
+<script>
+    // it will display an error, since width is not defined
+    // console.log(width);
+    function setWidth() {
+        var width = 100;
+        let height = 200;
+        console.log(`Width: ${width}`);
+        console.log(`Height: ${height}`);
+    }
+
+    setWidth();
+            
+    // These logs will display an error, since width (var) is function scoped and height (let) is block scoped.
+    // console.log(`Width: ${width}`);
+    // console.log(`Height: ${height}`);
+
+    let displayCar = true;
+    if (displayCar)
+        var car = `BMW`;
+
+    // Here we have a leak, due to var variables inside blocks of code like if statements, that can be called out of that block of code.
+    console.log(car);
+
+    // const variables can't be reassigned. 
+    const isALeak = true;
+
+    if(isALeak)
+        isALeak = false;
+            
+</script>
+</body>
+</html>
