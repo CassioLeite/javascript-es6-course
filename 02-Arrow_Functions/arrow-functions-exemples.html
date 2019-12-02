@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Arrow Functions More Exemples</title>
+</head>
+<body>
+
+<script>
+    
+    const race = '100m Dash';
+    const winners = ['Hunter Gath', 'Singa Song', 'Imda Bos'];
+
+    // Inplicit return with Object Literal
+    const win = winners.map((winner, i) => ({ name: winner, race: race, place: i + 1 }));
+    console.table(win);
+
+    // Filtering 
+    const ages = [23, 62, 45, 234, 2, 62, 235, 63, 34];
+    const old = ages.filter(age => age >= 60);
+    
+    console.log(old);
+
+</script>
+</body>
+</html>
