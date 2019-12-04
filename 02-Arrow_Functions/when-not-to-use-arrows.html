@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>When _not_ to use arrows =></title>
+</head>
+<body>
+<style>
+  button { font-size: 100px; }
+  .on { background: #ffc600; }
+</style>
+<button id="pushy">Push Me</button>
+
+<script>
+
+    // When you really need `this`.
+    const button = document.querySelector('#pushy');
+    //button.addEventListener('click', () => {      // It's not going to work at all.
+    button.addEventListener('click', function(){    // It's going to work. 
+        // console.log(this)
+        this.classList.toggle('on');                // We would get a window object.
+    });
+
+
+    // When you need a method to bind an object
+    const person = {
+        points: 23,
+        score: function(){
+        //score: () => {
+            this.points++;  // We would get a window object.
+        }
+    }
+
+    person.score();
+    console.log(person);
+
+    // When you need to add a prototype method.
+    class Car {
+        constructor(make, color) {
+            this.make = make;
+            this.color = color;
+        }
+    }
+
+    const beemer = new Car('bmw', 'blue');
+    const subie  = new Car('Subaru', 'white');
+
+    Car.prototype.summarize = function(){
+    //Car.prototype.summarize = () => {        // We would receive `undefined` for both of the variables.
+        return `This car is a ${this.make} in the color ${this.color}`;
+    };
+
+    console.log(subie.summarize());
+    console.log(beemer.summarize());
+
+    // When you need arguments objects.
+    
+    const orderChildren = function(){
+    //const orderChildren = () => {
+        const children = Array.from(arguments); // We can't get the `arguments` with arrow functions. 
+        return children.map((child, i) => {
+            return `${child} was child #${i + 1}`;
+        });
+        console.log(arguments);
+    }
+
+    orderChildren();
+</script>
+    
+</body>
+</html>

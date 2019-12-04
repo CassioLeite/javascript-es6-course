@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Default Arguments</title>
+</head>
+<body>
+
+<script>
+    function calculateBill(total, tax = 0.13, tip = 0.15) {
+        return total + (total * tax) + (total * tip);
+    }
+
+    // Once we pass undefined as argument, it will use the default value 0.13.
+    const totalBill = calculateBill(100, undefined, 0.25);
+    console.log(totalBill);
+
+    const sumValues = (a, b = 10) => a + b;
+    console.log(sumValues(1,undefined));
+    
+</script>
+</body>
+</html>
